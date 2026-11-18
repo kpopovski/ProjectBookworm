@@ -5,13 +5,18 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class CheckoutTest extends MainClasses {
+
+  @Test
+public void addBookToCartAndPlaceOrder() throws InterruptedException {
+
     CategoryPage categoryPage = new CategoryPage(driver);
 
-    @Test
-    public void  addBookToCartAndPlaceOrder() throws InterruptedException {
-        categoryPage.addBookToCart();
-        categoryPage.navigateToCart();
-        categoryPage.checkoutFormAndPlacingOrder();
-        Assert.assertTrue(categoryPage.isOrderSuccessfully(),"There is no order received");
-    }
+    categoryPage.addBookToCart();
+    categoryPage.navigateToCart();
+    categoryPage.checkoutFormAndPlacingOrder();
+
+    Assert.assertTrue(
+        categoryPage.isOrderSuccessfully(),
+        "There is no order received"
+    );
 }
