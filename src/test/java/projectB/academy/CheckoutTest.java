@@ -19,4 +19,5 @@ public void addBookToCartAndPlaceOrder() throws InterruptedException {
         categoryPage.isOrderSuccessfully(),
         "There is no order received"
     );
+  }
 }
