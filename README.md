@@ -171,6 +171,7 @@ mvn test
 ```bash
 mvn test -DsuiteXmlFile=testng.xml
 ```
+Updated GitHub Actions configuration.
 
 ---
 
