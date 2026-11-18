@@ -1,20 +1,25 @@
 package projectB.academy;
 
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.*;
-
-import java.time.Duration;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class MainClasses {
-    WebDriver driver = new ChromeDriver();
 
-
+    protected WebDriver driver;
 
     @BeforeMethod
     public void setUp() {
+
+        WebDriverManager.chromedriver().setup();
+
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless=new");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+
+        driver = new ChromeDriver(options);
+
         driver.navigate().to("https://bookworm.madrasthemes.com/");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
@@ -23,7 +28,8 @@ public class MainClasses {
 
     @AfterMethod
     public void tearDown() {
-
-        driver.close();
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }
