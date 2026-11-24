@@ -23,27 +23,27 @@ public class CategoryPage {
         this.actions = new Actions(driver);
     }
     public void addBookToWishlist() throws InterruptedException {
-        WebElement book = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='woocommerce-LoopProduct-link woocommerce-loop-product__link' and contains(text(), 'Blindside')]")));
+        WebElement book = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("woocommerce-LoopProduct-link woocommerce-loop-product__link")));
         actions.moveToElement(book).perform();
-        WebElement wishlistButton = book.findElement(By.xpath("/html/body/div[3]/div/div/div[1]/main/div[3]/ul/li[2]/div[1]/div/div/div[3]/div/div"));
+        WebElement wishlistButton = book.findElement(By.xpath("//main[@id='main']/div[@class='grid-view']/ul[@class='products list-unstyled row no-gutters row-cols-2 row-cols-lg-4 row-cols-wd-4 border-top border-left mb-6']/li[@class='add-to-wishlist-after_add_to_cart product type-product post-30 status-publish instock product_cat-mystery product_cat-thriller-suspense has-post-thumbnail featured taxable shipping-taxable purchasable product-type-simple col']/div[@class='bookworm-product-grid']/div[@class='product__inner overflow-hidden p-3 p-md-4d875']/div[@class='position-relative d-block']/div[@class='woocommerce-loop-product__hover product__hover d-flex align-items-center']/div[@class='yith-wcwl-add-to-wishlist add-to-wishlist-30 yith-wcwl-add-to-wishlist--link-style wishlist-fragment on-first-load']/div[@class='yith-wcwl-add-button']/a[@class='add_to_wishlist single_add_to_wishlist']/i[@class='flaticon-heart']"));
         wait.until(ExpectedConditions.elementToBeClickable(wishlistButton)).click();
         Thread.sleep(2000);
     }
     public void navigateToWishlist() {
-        WebElement wishlistIcon = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='https://bookworm.madrasthemes.com/wishlist/' and contains(@class, 'nav-link')]")));
+        WebElement wishlistIcon = wait.until(ExpectedConditions.elementToBeClickable(By.className("nav-link link-black-100 font-size-3 px-3")));
         wishlistIcon.click();
     }
     public void editWishlistTitle(String newTitle) {
-        WebElement editButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/main/div/div[2]/div/form/div[1]/div[1]/a")));
+        WebElement editButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("yith-wcwl-icon-pencil-outline")));
         editButton.click();
-        WebElement titleField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='text' and @name='wishlist_name']")));
+        WebElement titleField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("hidden-title-form")));
         titleField.clear();
         titleField.sendKeys("My Favorite Books");
         WebElement checkButton = driver.findElement(By.id("yith-wcwl-icon-check"));
         checkButton.click();
     }
     public boolean isBookInWishlist() {
-        WebElement bookInWishlist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@href='https://bookworm.madrasthemes.com/product/blindside-michael-bennett-book-12/']")));
+        WebElement bookInWishlist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tr[@id='yith-wcwl-row-30']/td[@class='product-name']/a")));
         return bookInWishlist.isDisplayed();
     }
 
