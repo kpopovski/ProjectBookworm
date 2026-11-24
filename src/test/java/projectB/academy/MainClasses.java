@@ -28,7 +28,7 @@ public class MainClasses {
         driver.navigate().to("https://bookworm.madrasthemes.com/");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
-        driver.findElement(By.className("nav-link link-black-100 mx-4 px-0 py-5 font-weight-medium")).click();
+        driver.findElement(By.xpath("//*[@id="menu-item-170"]/a")).click();
     }
 
     @AfterMethod
